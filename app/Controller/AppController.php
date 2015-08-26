@@ -31,4 +31,28 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+    public function beforeFilter(){
+        if($this->params["prefix"]=="aluno"){
+            $this->layout = "default_aluno";
+            if(!$this->Session->check("aluno")){
+                $this->redirect("/aluno");
+            }
+        }else if($this->params["prefix"]=="funcionario"){
+            $this->layout = "default_funcionario";
+            if(!$this->Session->check("funcionario")){
+                $this->redirect("/funcionario");
+            }
+        }else if($this->params["prefix"]=="admin"){
+            $this->layout = "default_admin";
+            if(!$this->Session->check("admin")){
+                $this->redirect("/admin");
+            }
+        }else if($this->params["prefix"]=="alunoconsulta"){
+            $this->layout = "default_alunoconsulta";
+            if(!$this->Session->check("alunoconsulta")){
+                $this->redirect("/alunoconsulta");
+            }
+        }
+    }
+
 }
